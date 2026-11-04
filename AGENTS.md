@@ -3,7 +3,7 @@
 This repository contains agent skills for interviews, PR reviews, and learning.
 When reviewing a PR, load `skills/pr-review/SKILL.md`.
 When preparing for a system design interview, load `skills/system-design/SKILL.md`.
-When preparing for a coding/behavioral interview, load `skills/coding-interview/SKILL.md`.
+When preparing for a coding/behavioral interview, load `skills/system-design/SKILL.md` (Coding Interview section).
 When turning notes into durable knowledge, load `skills/learning/SKILL.md`.
 
 ## Rules

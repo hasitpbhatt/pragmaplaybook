@@ -9,9 +9,11 @@ description: Guides technical system design interviews. Use when preparing for o
 A 6-step framework for any system design interview. Each step has a time budget; skip none. The goal isn't a perfect design — it's demonstrating structured thinking and trade-off awareness.
 
 ## When to Use
-- Technical interview (system design round)
+- Technical interview (system design or coding round)
 - Architecture review for a real system
 - When asked "design X at scale"
+- Solving a DSA problem in an interview setting
+- Behavioral interview prep (STAR method)
 
 ## Process
 
@@ -80,6 +82,26 @@ A 6-step framework for any system design interview. Each step has a time budget;
 | "I'll mention trade-offs at the end" | Trade-offs ARE the answer. State them inline. |
 | "A simple design is too simple" | Simple + correct beats complex + wrong. |
 
+## Coding Interview (DSA + Behavioral)
+
+### DSA Process
+1. **Clarify** (2 min) — restate; ask edge cases, constraints, input size; confirm output format.
+2. **Brute force** (3 min) — state naive solution; don't code yet.
+3. **Optimize** (5 min) — find bottleneck; apply pattern (two pointers, sliding window, hash map, binary search, DP); state new complexity.
+4. **Code** (15 min) — clean, readable, meaningful names, explicit edge cases.
+5. **Test** (5 min) — walk example; test empty/single/dups/negatives; trace complexity.
+6. **Discuss** (3 min) — trade-offs; what with more time?; "what if 10x larger?"
+
+Complexity cheat sheet: hash map O(1)/O(n); binary search O(log n)/O(1); two pointers O(n)/O(1); sliding window O(n)/O(k); BFS/DFS O(V+E)/O(V); DP 2D O(n²)/O(n²) or O(n); heap O(n log k)/O(k).
+
+### Behavioral (STAR)
+1. Pick a real situation with a measurable outcome.
+2. **S**ituation (2 sentences), **T**ask (your responsibility), **A**ction (what YOU did, "I"), **R**esult (quantified + learned).
+3. Honesty gates: don't claim team wins; admit failures; "I don't know" beats confident wrong.
+
+### Red Flags (coding)
+- Jumping to code without clarifying; silent coding; skipping edge-case tests; claiming team outcomes; optimizing prematurely.
+
 ## Verification
 - [ ] Requirements clarified (functional + non-functional + out-of-scope)
 - [ ] Scale estimated with numbers
@@ -88,3 +110,5 @@ A 6-step framework for any system design interview. Each step has a time budget;
 - [ ] Bottlenecks identified with mitigations
 - [ ] Trade-offs stated explicitly with justification
 - [ ] Can answer "what breaks first at 10x load?"
+- [ ] DSA: problem restated, brute force stated, complexity stated before coding, tested with examples + edge cases
+- [ ] STAR answers use "I" with quantified results
