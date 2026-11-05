@@ -25,6 +25,8 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 - Prefer rollback / feature flag off / traffic shift over debugging.
 - If unknown cause, reduce blast radius: rate limit, shed load, failover.
 - Never make untracked changes in prod; log every action with timestamp.
+- If a mitigation makes things worse, stop and revert. Do not stack fixes on a broken mitigation.
+- Safety- or data-loss incidents: pause and get sign-off before rollback; a bad rollback can compound the loss.
 
 ### Step 3: Communicate (ongoing)
 - Status update every 15 min to stakeholders (impact + ETA + next step).
@@ -34,6 +36,8 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 - Reproduce in staging if possible; never experiment on prod without a plan.
 - Narrow by: deploy diff, config change, dependency, traffic spike, data anomaly.
 - Check: logs, metrics, traces, recent changes, dashboards.
+- Diagnosis loop (when reproducible): signal that goes red on the bug → minimise the repro → hypothesise → instrument to confirm → fix. If you cannot reproduce, narrow by evidence instead: diff good vs. bad time windows, compare configs, review deploy history.
+- Never change prod to "see what happens."
 
 ### Step 5: Resolve & verify
 - Confirm recovery via metrics, not just "feels better."
@@ -43,6 +47,7 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 - Blameless: focus on systems, not people.
 - Timeline, root cause, contributing factors, action items with owners + dates.
 - Action items must be tracked issues, not promises.
+- Regression tests and config hardening go here, not in the live incident loop.
 
 ## Red Flags
 - Debugging before mitigating
@@ -60,10 +65,14 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 | "Rollback is too slow" | Debugging live is slower and riskier. |
 | "Postmortem is bureaucracy" | Untracked fixes recur. |
 | "We know who caused it" | Systems fail; people don't. |
+| "We don't have time for a timeline" | Un-timestamped timelines block recurrence analysis and turn into blame guessing. |
+| "Just restart/retry it" | Restart masks the cause and throws away the failing state and evidence. |
 
 ## Verification
 - [ ] Service restored; metrics confirm recovery
+- [ ] Mitigation controls (rate limit, flag, failover) removed or reviewed after recovery
 - [ ] Timeline documented with timestamps
 - [ ] Root cause identified (or explicitly unknown with follow-up)
 - [ ] Postmortem filed with tracked action items
+- [ ] No untracked prod changes made during the incident
 - [ ] Monitoring/alerts improved to catch recurrence earlier

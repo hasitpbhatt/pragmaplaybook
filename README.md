@@ -1,6 +1,6 @@
 # pragmaplaybook
 
-**Succinct, powerful, drop-in.** A collection of agent skills and playbooks for interviews, PR reviews, and learning — load any skill into your AI agent and it enforces the same discipline a senior engineer would.
+**Succinct, powerful, drop-in.** A collection of agent skills and playbooks for interviews, PR reviews, learning, incident response, and running a solo company — load any skill into your AI agent and it enforces the same discipline a senior engineer would.
 
 ## What's inside
 
@@ -31,6 +31,12 @@ Load skills/pr-review/SKILL.md before reviewing this PR.
 | `system-design` | Technical interview — 6-step framework + trade-off matrix |
 | `coding-interview` | DSA + behavioral interview coach (STAR, complexity, honesty gates) |
 | `learning` | Turn notes into durable knowledge (spaced repetition, Feynman) |
+| `incident-response` | Production incidents, on-call, postmortem |
+| `wayfinder` | Plan huge, multi-session work as a map of decision tickets |
+| `tdd` | Red-green-refactor TDD with vertical slices |
+| `debug` | Disciplined debug loop (feedback → hypothesise → fix) |
+| `grill` | Relentless interview to stress-test a plan or idea |
+| `retro` | Post-session improvements to the agent's environment |
 
 ## Philosophy
 
