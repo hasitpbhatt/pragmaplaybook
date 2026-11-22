@@ -3,3 +3,9 @@
 node_modules/
 .env
 *.log
+
+# Locally installed third-party skills (see skills-lock.json)
+skills/browseros-neo/
+.claude/
+.agents/
+skills-lock.json
