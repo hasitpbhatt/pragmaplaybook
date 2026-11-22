@@ -29,6 +29,53 @@ Or let the agent self-select: drop `AGENTS.md` in your repo root and it routes e
 
 To pin a version, install a tag (`npx skills add hasitpbhatt/pragmaplaybook@v1.0.0`) or copy the files you want into your own repo.
 
+### GitHub Copilot
+
+Skills live in the host's skills directory, one folder per skill. Copy the ones
+you want into `~/.copilot/skills/` (personal, all projects) or
+`<repo>/.claude/skills/` (checked in, shared with the team):
+
+```bash
+# all 10 skills, personal
+for s in skills/*/; do cp -r "$s" ~/.copilot/skills/; done
+
+# or just one, shared with your team
+mkdir -p .claude/skills
+cp -r skills/pr-review .claude/skills/
+```
+
+Restart the session so the skills are picked up. That's the whole integration —
+each skill is a self-contained folder with a `SKILL.md`.
+
+To make the skills discoverable without any copying, add routing lines to
+`.github/github-app.yml` so sessions read the right file at the right moment:
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+```
+
+Or skip repo config entirely — in any Copilot chat, ask for it by path:
+
+```
+Read skills/pr-review/SKILL.md, then review the current diff with it.
+```
+
+### Claude Code / Cursor / OpenCode
+
+Same idea, different directory: `~/.claude/skills/<name>/SKILL.md` (personal) or
+`.claude/skills/<name>/SKILL.md` (per-project). Cursor and OpenCode read the
+same `SKILL.md` files from their own skills directory.
+
+To install one skill into Claude Code by hand:
+
+```bash
+mkdir -p ~/.claude/skills/pr-review
+cp skills/pr-review/SKILL.md ~/.claude/skills/pr-review/
+```
+
 ## Skills
 
 All skills live under `skills/<name>/SKILL.md`.
