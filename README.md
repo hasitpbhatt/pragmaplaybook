@@ -6,24 +6,84 @@
 
 ```
 skills/         → Agent-loadable SKILL.md files (drop this repo into your agent)
-playbooks/      → Human-readable cheat sheets
-references/     → Shared checklists skills pull into context
+AGENTS.md       → Router that tells an agent which skill to load, and when
 ```
+
+That's it. Every skill is a single `SKILL.md` with YAML frontmatter (`name`, `description`), so any host implementing the Agent Skills standard picks them up with no adapter.
 
 ## Quick start
 
+Install the whole collection (Claude Code, Cursor, OpenCode, Copilot CLI, …):
+
 ```bash
-# OpenCode / Claude Code / Cursor / any agent that supports the Agent Skills standard
-npx skills add <your-github>/pragmaplaybook
+npx skills add hasitpbhatt/pragmaplaybook
 ```
 
-Or just point your agent at a single skill:
+Or load one skill on demand — this fallback works in any agent, including ones with no install command:
 
 ```
 Load skills/pr-review/SKILL.md before reviewing this PR.
 ```
 
+Or let the agent self-select: drop `AGENTS.md` in your repo root and it routes each situation to the right skill.
+
+To pin a version, install a tag (`npx skills add hasitpbhatt/pragmaplaybook@v1.0.0`) or copy the files you want into your own repo.
+
+### Creating .github/github-app.yml (optional but recommended)
+
+Create `.github/github-app.yml` in the root of your repo:
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+
+The Copilot app will load the skills automatically on every new session.
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+
+The Copilot app will load the skills automatically on every new session.
+
+### Existing .github/github-app.yml
+
+If the file already exists, simply update the `instructions:` block (it is cumulative with global instructions).
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+
+### How it actually works
+
+When you run `npx skills add .` or ask an agent to load a skill, the CLI / agent reads the `instructions` block and routes to the correct file. This is how GitHub Copilot, Cursor, Claude Code, and every other agent that respects the Agent Skills standard discovers skills.
+
+### Hardcoded fallback (no config file needed)
+
+Even without the file, the agent can still use any skill with a one-line prompt:
+
+```
+Read skills/pr-review/SKILL.md, then review the current diff with it.
+```
+
+This works today in Copilot, Cursor, Claude Code, Continue.dev, and any agent that can read local Markdown files.
+
 ## Skills
+
+All skills live under `skills/<name>/SKILL.md`.
 
 | Skill | Use when |
 |---|---|
@@ -38,12 +98,26 @@ Load skills/pr-review/SKILL.md before reviewing this PR.
 | `grill` | Relentless interview to stress-test a plan or idea |
 | `retro` | Post-session improvements to the agent's environment |
 
+## Using these in your own repo
+
+1. Install, or copy `skills/` and `AGENTS.md` in.
+2. Keep `AGENTS.md` — it's the routing table. Without it the agent won't know the skills exist.
+3. Skills are read-only guidance: nothing here executes code, and no skill requires network access.
+
 ## Philosophy
 
 - **One idea per file.** No fluff.
 - **Process, not prose.** Every skill is a workflow with steps, gates, and exit criteria.
 - **Anti-rationalization.** Each skill lists the excuses agents use to skip steps, with rebuttals.
 - **Verification is non-negotiable.** "Seems right" is never sufficient.
+
+## Contributing
+
+Every skill must include Overview, When to Use, Process, Rationalizations, Red Flags, and Verification. If a `SKILL.md` exceeds ~200 lines, split it. Prefer deletion over addition: a skill that removes complexity beats one that adds it. No skill merges without a Verification section.
+
+## Third-party skills
+
+`skills-lock.json` and any skill it references are local install state, not part of this repo. They're gitignored so consumers don't inherit unrelated skills. Third-party skills keep their own licenses — this repo's MIT covers only the skills listed above.
 
 ## License
 
