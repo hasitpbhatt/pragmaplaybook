@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development: build features and fix bugs one vertical slice at a time with a red-green loop.
+description: "Test-driven development: build features and fix bugs one vertical slice at a time with a red-green loop."
 ---
 
 # TDD
