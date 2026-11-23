@@ -81,18 +81,6 @@ Read skills/pr-review/SKILL.md, then review the current diff with it.
 
 This works today in Copilot, Cursor, Claude Code, Continue.dev, and any agent that can read local Markdown files.
 
-When you run `npx skills add .` or ask an agent to load a skill, the CLI / agent reads the `instructions` block and routes to the correct file. This is how GitHub Copilot, Cursor, Claude Code, and every other agent that respects the Agent Skills standard discovers skills.
-
-### Hardcoded fallback (no config file needed)
-
-Even without the file, the agent can still use any skill with a one-line prompt:
-
-```
-Read skills/pr-review/SKILL.md, then review the current diff with it.
-```
-
-This works today in Copilot, Cursor, Claude Code, Continue.dev, and any agent that can read local Markdown files.
-
 ## Skills
 
 All skills live under `skills/<name>/SKILL.md`.
