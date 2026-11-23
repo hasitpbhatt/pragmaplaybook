@@ -49,7 +49,7 @@ Done when the frontier is empty: every branch visited, nothing silently assumed.
 | Asking the user for facts you could look up | Wastes their time; you have tools, use them |
 | One question at a time | Serial bottleneck; the frontier has multiple independent branches |
 
-## Red flags
+## Red Flags
 
 - Acting before shared understanding
 - Asking the user for facts you could look up

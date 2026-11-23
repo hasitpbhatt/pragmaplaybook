@@ -62,7 +62,7 @@ Write the regression test before the fix, but only if a correct seam exists (one
 | Untagged debug logs left behind | Makes cleanup hard; future debuggers can't grep efficiently |
 | Fix without regression test where a seam exists | Gives false confidence; bug can recur |
 
-## Red flags
+## Red Flags
 
 - Hypothesising before a red-capable loop exists
 - Single hypothesis instead of 3–5

@@ -53,7 +53,7 @@ Two modes. Either way, **never resolve more than one ticket per session**, with 
 | Charting everything upfront | The map is deliberately incomplete; leave fog in place |
 | Resolving more than one ticket per session | Decisions must be resolved one at a time |
 
-## Red flags
+## Red Flags
 
 - Charting everything up front instead of leaving fog
 - Resolving more than one ticket per session

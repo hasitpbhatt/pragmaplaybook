@@ -43,16 +43,6 @@ instructions: |
 
 The Copilot app will load the skills automatically on every new session.
 
-```yaml
-instructions: |
-  This repo contains agent skills under skills/.
-  When reviewing a PR, read skills/pr-review/SKILL.md first.
-  When debugging, read skills/debug/SKILL.md first.
-  When preparing for a system design interview, read skills/system-design/SKILL.md first.
-```
-
-The Copilot app will load the skills automatically on every new session.
-
 ### Existing .github/github-app.yml
 
 If the file already exists, simply update the `instructions:` block (it is cumulative with global instructions).
@@ -62,8 +52,6 @@ instructions: |
   This repo contains agent skills under skills/.
   When reviewing a PR, read skills/pr-review/SKILL.md first.
   When debugging, read skills/debug/SKILL.md first.
-  When preparing for a system design interview, read skills/system-design/SKILL.md first.
-```
   When preparing for a system design interview, read skills/system-design/SKILL.md first.
 ```
 

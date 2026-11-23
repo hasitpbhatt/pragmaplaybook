@@ -1,6 +1,6 @@
 ---
 name: retro
-description: Retrospective on a coding session: suggest improvements to the agent's environment (navigation, checks, standards, tooling), most severe first.
+description: "Retrospective on a coding session: suggest improvements to the agent's environment (navigation, checks, standards, tooling), most severe first."
 ---
 
 # Retro

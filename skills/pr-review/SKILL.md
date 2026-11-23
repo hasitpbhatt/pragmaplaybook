@@ -95,7 +95,7 @@ Before sending, check yourself: every finding has a location, trigger, and evide
 | Complexity with a nameable cost: conditionals scattered through unrelated paths, a bespoke helper duplicating a canonical one, feature logic leaking into a shared module, a large file growing instead of being split | Each adds cognitive load and risk; the reviewer must track and understand all of them |
 | Personal preference, "I would have done X", formatting with no lint rule or team convention behind it, requirements absent from the spec and code, performance concerns with no plausible workload, or problems that exist only in untouched code | These are not defects; they are style or opinion. Reporting them wastes the reviewer's time and teaches authors to ignore valid findings |
 
-## Red flags in the change
+## Red Flags in the Change
 
 Any one means Request changes:
 
