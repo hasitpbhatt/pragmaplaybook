@@ -47,7 +47,7 @@ A **seam** is the public boundary you test at — the interface where you observ
 | Tautological assertions | These pass by construction and can never disagree with the code |
 | Horizontal slicing | These verify imagined behavior and go insensitive to real changes |
 
-## Red flags
+## Red Flags
 
 - Implementation-coupled tests (mock internals, test private methods)
 - Tautological assertions (recomputes expected value like the code does)
