@@ -29,52 +29,69 @@ Or let the agent self-select: drop `AGENTS.md` in your repo root and it routes e
 
 To pin a version, install a tag (`npx skills add hasitpbhatt/pragmaplaybook@v1.0.0`) or copy the files you want into your own repo.
 
-### GitHub Copilot
+### Creating .github/github-app.yml (optional but recommended)
 
-Skills live in the host's skills directory, one folder per skill. Copy the ones
-you want into `~/.copilot/skills/` (personal, all projects) or
-`<repo>/.claude/skills/` (checked in, shared with the team):
-
-```bash
-# all 10 skills, personal
-for s in skills/*/; do cp -r "$s" ~/.copilot/skills/; done
-
-# or just one, shared with your team
-mkdir -p .claude/skills
-cp -r skills/pr-review .claude/skills/
-```
-
-Restart the session so the skills are picked up. That's the whole integration —
-each skill is a self-contained folder with a `SKILL.md`.
-
-To make the skills discoverable without any copying, add routing lines to
-`.github/github-app.yml` so sessions read the right file at the right moment:
+Create `.github/github-app.yml` in the root of your repo:
 
 ```yaml
 instructions: |
   This repo contains agent skills under skills/.
   When reviewing a PR, read skills/pr-review/SKILL.md first.
   When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
 ```
 
-Or skip repo config entirely — in any Copilot chat, ask for it by path:
+The Copilot app will load the skills automatically on every new session.
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+
+The Copilot app will load the skills automatically on every new session.
+
+### Existing .github/github-app.yml
+
+If the file already exists, simply update the `instructions:` block (it is cumulative with global instructions).
+
+```yaml
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+```
+
+### How it actually works
+
+When you run `npx skills add .` or ask an agent to load a skill, the CLI / agent reads the `instructions` block and routes to the correct file. This is how GitHub Copilot, Cursor, Claude Code, and every other agent that respects the Agent Skills standard discovers skills.
+
+### Hardcoded fallback (no config file needed)
+
+Even without the file, the agent can still use any skill with a one-line prompt:
 
 ```
 Read skills/pr-review/SKILL.md, then review the current diff with it.
 ```
 
-### Claude Code / Cursor / OpenCode
+This works today in Copilot, Cursor, Claude Code, Continue.dev, and any agent that can read local Markdown files.
 
-Same idea, different directory: `~/.claude/skills/<name>/SKILL.md` (personal) or
-`.claude/skills/<name>/SKILL.md` (per-project). Cursor and OpenCode read the
-same `SKILL.md` files from their own skills directory.
+When you run `npx skills add .` or ask an agent to load a skill, the CLI / agent reads the `instructions` block and routes to the correct file. This is how GitHub Copilot, Cursor, Claude Code, and every other agent that respects the Agent Skills standard discovers skills.
 
-To install one skill into Claude Code by hand:
+### Hardcoded fallback (no config file needed)
 
-```bash
-mkdir -p ~/.claude/skills/pr-review
-cp skills/pr-review/SKILL.md ~/.claude/skills/pr-review/
+Even without the file, the agent can still use any skill with a one-line prompt:
+
 ```
+Read skills/pr-review/SKILL.md, then review the current diff with it.
+```
+
+This works today in Copilot, Cursor, Claude Code, Continue.dev, and any agent that can read local Markdown files.
 
 ## Skills
 
