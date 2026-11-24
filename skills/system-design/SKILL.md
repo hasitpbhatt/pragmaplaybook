@@ -64,13 +64,6 @@ A 6-step framework for any system design interview. Each step has a time budget;
 | Sync | Sync call | Async queue | <100ms SLA vs >100ms OK |
 | Storage | SQL | NoSQL | Relations/joins vs flat KV |
 
-## Red Flags
-- Jumping to components before clarifying requirements
-- No scale numbers ("it should scale")
-- Ignoring failure modes
-- No trade-offs stated ("this is just the best")
-- Designing a DB schema for 5 min then skipping bottleneck analysis
-
 ## Rationalizations
 
 | Excuse | Reality |
@@ -79,6 +72,14 @@ A 6-step framework for any system design interview. Each step has a time budget;
 | "Scale doesn't matter for the interview" | Scale drives every decision. Estimate. |
 | "I'll mention trade-offs at the end" | Trade-offs ARE the answer. State them inline. |
 | "A simple design is too simple" | Simple + correct beats complex + wrong. |
+
+## Red Flags
+
+- Jumping to components before clarifying requirements
+- No scale numbers ("it should scale")
+- Ignoring failure modes
+- No trade-offs stated ("this is just the best")
+- Designing a DB schema for 5 min then skipping bottleneck analysis
 
 ## Verification
 - [ ] Requirements clarified (functional + non-functional + out-of-scope)

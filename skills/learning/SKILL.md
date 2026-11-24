@@ -49,13 +49,6 @@ Rules:
 - Link to one existing note/concept
 - If no link exists, the concept is isolated — re-examine
 
-## Red Flags
-- Notes longer than 1 page per topic (you're transcribing, not learning)
-- No retrieval practice (re-reading ≠ learning)
-- Cards with answers > 2 lines
-- Skipping the Feynman step ("I already understand it")
-- Hoarding notes without reviewing
-
 ## Rationalizations
 
 | Excuse | Reality |
@@ -64,6 +57,14 @@ Rules:
 | "More notes = more learning" | Compression is the learning. |
 | "I understand it, no need to explain" | Feynman exposes gaps. Always. |
 | "Spaced repetition is too much overhead" | 15 min/week beats 5 hours cramming. |
+
+## Red Flags
+
+- Notes longer than 1 page per topic (you're transcribing, not learning)
+- No retrieval practice (re-reading ≠ learning)
+- Cards with answers > 2 lines
+- Skipping the Feynman step ("I already understand it")
+- Hoarding notes without reviewing
 
 ## Verification
 - [ ] Feynman explanation written (plain language)

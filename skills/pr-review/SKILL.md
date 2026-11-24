@@ -19,7 +19,7 @@ Use whenever the user asks to review, audit, sanity-check, or approve code chang
 - **Standard**: most changes. Run the full process.
 - **Deep**: auth, payments, personal data, crypto, migrations, concurrency, public APIs, or config and infrastructure that ships to production. Add the backend and operations checks, treat anything you could not verify as an open risk, and recommend a qualified human reviewer where the area exceeds what you can verify (security, concurrency, accessibility, i18n).
 
-Config and infrastructure changes get the same care as code: most outages trace back to changes to a live system, and a one-line config edit counts.
+Config and infrastructure changes get the same care as code: most production outages trace back to recent changes to a live system, and a one-line config edit counts.
 
 ## Process
 
@@ -29,12 +29,12 @@ Config and infrastructure changes get the same care as code: most outages trace 
 
 **3. Check size and shape.** Defect detection falls off past roughly 200-400 changed lines (excluding generated files, lockfiles, data). Beyond that, or with unrelated changes bundled, say so and ask for a split; if you must review anyway, go in risk order and state what you skipped. If structure and behavior are mixed (a rename, reformat, or refactor beside logic changes), ask the author to separate them: nobody can confirm a "pure refactor" changed no behavior when it is tangled with logic.
 
-**4. Review in this order**, most important first. Understand every human-written line and read the whole function and its callers, not only the changed lines; skim generated code and data. For Deep-risk or AI-authored changes, split review into two parallel axes — Standards (repo conventions + smell baseline) and Spec (faithful implementation of the originating issue) — so neither pollutes the other.
+**4. Review in this order**, most important first. Understand every human-written line and read the whole function and its callers, not only the changed lines; skim generated code and data. For Deep-risk or AI-authored changes, split review into two parallel axes — Standards (repo conventions + smell baseline) and Spec (faithful implementation of the originating issue) — so neither pollutes the other. Order: design → correctness → security → performance → tests → readability.
 
 1. **Design**: Does this belong here, or in a library or another module? Does it fit the architecture? Is it over-engineered, generic for needs that do not exist yet?
 2. **Correctness**: Matches the spec? Edge cases (null, empty, boundary, duplicates)? Error paths? Race and state bugs? Regression: callers, defaults, error behavior, and side effects that worked before. For UI changes, view a screenshot or demo and check loading, empty, and error states.
 3. **Security**: Where does untrusted data (input, files, URLs, webhooks, other services) cross a trust boundary, and does it stay out of queries, commands, file paths, URLs, and HTML (injection, XSS, SSRF, path traversal)? Is every new entry point authorized per object, not just per login (can user A reach user B's record)? Do errors fail closed? Secrets or personal data in code or logs? Crypto from standard libraries only? New dependencies real, maintained, pinned, lockfile updated by the tool?
-4. **Performance and scalability**: Estimate before you flag it: items times cost per operation. Look for a call per item, a query in a loop, an unbounded fetch, no pagination, O(n^2) on user-sized data, blocking work on an async path, a missing index for a new query. Shared library and hot-path code get a lower bar; scripts and tiny inputs a higher one.
+4. **Performance and scalability**: Estimate before you flag it: items times cost per operation. Look for a call per item, a query in a loop, an unbounded fetch, no pagination, O(n^2) on user-sized data, blocking work on an async path, a missing index for a new query. Shared library and hot-path code get a lower bar to flag (more scrutiny); scripts and tiny inputs get a higher one (must be a real risk at their scale).
 5. **Tests**: Present, testing behavior not implementation, covering edge cases, able to fail when the code breaks? For a bug fix, confirm the new test fails without the fix. Tests are code too; flag brittle ones.
 6. **Readability and repo fit**: Follows repo patterns, lint rules, and naming; straightforward control flow; no dead code; comments say why, not what; docs updated when behavior or interfaces change.
 
@@ -95,7 +95,7 @@ Before sending, check yourself: every finding has a location, trigger, and evide
 | Complexity with a nameable cost: conditionals scattered through unrelated paths, a bespoke helper duplicating a canonical one, feature logic leaking into a shared module, a large file growing instead of being split | Each adds cognitive load and risk; the reviewer must track and understand all of them |
 | Personal preference, "I would have done X", formatting with no lint rule or team convention behind it, requirements absent from the spec and code, performance concerns with no plausible workload, or problems that exist only in untouched code | These are not defects; they are style or opinion. Reporting them wastes the reviewer's time and teaches authors to ignore valid findings |
 
-## Red Flags in the Change
+## Red Flags
 
 Any one means Request changes:
 

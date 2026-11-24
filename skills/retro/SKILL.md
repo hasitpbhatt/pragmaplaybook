@@ -28,6 +28,8 @@ After a coding session, when you want to improve the agent's environment for fut
    - **Information access**: info the agent lacked (logs, readonly service access)?
 3. Present candidates in order of severity.
 
+Rules for application: implementation has context pressure while review gets the diff, so standards belong to review, not implementation. Push guidance into AGENTS.md/CLAUDE.md sparingly (usually navigation pointers only); CODING_STANDARDS.md is read during review, not implementation. Prefer building a check over writing a rule for mechanical violations.
+
 ## Rationalizations
 
 | Excuse | Reality |
@@ -43,13 +45,6 @@ After a coding session, when you want to improve the agent's environment for fut
 - Steering instructions that don't modify agent behavior (no-ops)
 - Mechanical violations enforced through prose rules instead of checks
 - Suggestions that don't name a concrete pain point from the session
-
-## Rules
-
-- Implementation vs review: implementation has context pressure; review gets the diff. Standards belong to review, not implementation.
-- AGENTS.md/CLAUDE.md: push sparingly, usually navigation pointers only.
-- CODING_STANDARDS.md: read during review, not implementation.
-- Prefer building a check over writing a rule (mechanical violations).
 
 ## Verification
 

@@ -40,10 +40,6 @@ A 6-step DSA process for coding interviews plus behavioral STAR framework. Each 
 2. **S**ituation (2 sentences), **T**ask (your responsibility), **A**ction (what YOU did, "I"), **R**esult (quantified + learned).
 3. Honesty gates: don't claim team wins; admit failures; "I don't know" beats confident wrong.
 
-## Red Flags
-- Jumping to code without clarifying; silent coding; skipping edge-case tests
-- Claiming team outcomes; optimizing prematurely
-
 ## Rationalizations
 
 | Excuse | Reality |
@@ -52,6 +48,11 @@ A 6-step DSA process for coding interviews plus behavioral STAR framework. Each 
 | "Brute force is a waste of time" | It shows you understand the problem before optimizing |
 | "Edge cases don't matter" | They're the difference between pass and fail |
 | "Team wins are my wins" | Interviewers want YOUR impact; claim "I", not "we" |
+
+## Red Flags
+
+- Jumping to code without clarifying; silent coding; skipping edge-case tests
+- Claiming team outcomes; optimizing prematurely
 
 ## Verification
 - [ ] Problem restated; constraints and edge cases confirmed

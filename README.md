@@ -1,15 +1,16 @@
 # pragmaplaybook
 
-**Succinct, powerful, drop-in.** A collection of agent skills and playbooks for interviews, PR reviews, learning, incident response, and running a solo company — load any skill into your AI agent and it enforces the same discipline a senior engineer would.
+**Succinct, powerful, drop-in.** A collection of agent skills and playbooks for interviews, PR reviews, learning, incident response, debugging, TDD, planning, and retrospectives — load any skill into your AI agent and it enforces the same discipline a senior engineer would.
 
 ## What's inside
 
 ```
 skills/         → Agent-loadable SKILL.md files (drop this repo into your agent)
 AGENTS.md       → Router that tells an agent which skill to load, and when
+tests/          → Calibration test cases (currently pr-review)
 ```
 
-That's it. Every skill is a single `SKILL.md` with YAML frontmatter (`name`, `description`), so any host implementing the Agent Skills standard picks them up with no adapter.
+Most skills are a single `SKILL.md` with YAML frontmatter (`name`, `description`). `skills/system-design/canvas.md` is a fillable companion template loaded alongside the system-design skill, and `tests/pr-review.md` holds its calibration cases.
 
 ## Quick start
 
@@ -19,6 +20,8 @@ Install the whole collection (Claude Code, Cursor, OpenCode, Copilot CLI, …):
 npx skills add hasitpbhatt/pragmaplaybook
 ```
 
+The installer (`skills` CLI) and this repo are third-party/open-source. Review what it writes to your machine and pin the CLI version before running in shared/CI environments. Skills are read-only Markdown; the installer should only add files under your skill directory.
+
 Or load one skill on demand — this fallback works in any agent, including ones with no install command:
 
 ```
@@ -27,11 +30,11 @@ Load skills/pr-review/SKILL.md before reviewing this PR.
 
 Or let the agent self-select: drop `AGENTS.md` in your repo root and it routes each situation to the right skill.
 
-To pin a version, install a tag (`npx skills add hasitpbhatt/pragmaplaybook@v1.0.0`) or copy the files you want into your own repo.
+To pin a version, copy the files you want into your own repo (no version tags are published yet).
 
-### Creating .github/github-app.yml (optional but recommended)
+### Creating .github/github-app.yml (optional, Copilot-specific)
 
-Create `.github/github-app.yml` in the root of your repo:
+Create `.github/github-app.yml` in the root of your repo if you use GitHub Copilot's app-level skill loader:
 
 ```yaml
 instructions: |
@@ -41,7 +44,7 @@ instructions: |
   When preparing for a system design interview, read skills/system-design/SKILL.md first.
 ```
 
-The Copilot app will load the skills automatically on every new session.
+The Copilot app may load the skills automatically on every new session; verify behavior in your version and treat this as optional. All other routes (drop-in `AGENTS.md`, one-line prompt) work without it.
 
 ### Existing .github/github-app.yml
 
@@ -75,7 +78,7 @@ All skills live under `skills/<name>/SKILL.md`.
 
 | Skill | Use when |
 |---|---|
-| `pr-review` | Before merging any change — enforces accuracy → scalability → security → style |
+| `pr-review` | Before merging any change — enforces design → correctness → security → performance → tests → readability, scaled to risk |
 | `system-design` | Technical interview — 6-step framework + trade-off matrix |
 | `coding-interview` | DSA + behavioral interview coach (STAR, complexity, honesty gates) |
 | `learning` | Turn notes into durable knowledge (spaced repetition, Feynman) |
@@ -101,7 +104,19 @@ All skills live under `skills/<name>/SKILL.md`.
 
 ## Contributing
 
-Every skill must include Overview, When to Use, Process, Rationalizations, Red Flags, and Verification. If a `SKILL.md` exceeds ~200 lines, split it. Prefer deletion over addition: a skill that removes complexity beats one that adds it. No skill merges without a Verification section.
+Every skill must include Overview, When to Use, Process, Rationalizations, Red Flags, and Verification, in that order. If a `SKILL.md` exceeds ~200 lines, split it. Prefer deletion over addition: a skill that removes complexity beats one that adds it. No skill merges without a Verification section.
+
+### Adding a new skill
+
+1. Create `skills/<name>/SKILL.md` with YAML frontmatter `name` and `description`.
+2. Include the six required sections in order. Keep descriptions actionable (trigger phrases).
+3. Add a routing line to `AGENTS.md` and a row to the README skill table.
+4. If you ship a companion file (like `skills/system-design/canvas.md`), mention it in README and AGENTS.
+5. Add or update calibration cases in `tests/` (currently `tests/pr-review.md`).
+
+### Validating changes
+
+There is no automated CI yet. Check by hand: frontmatter present, all six headings present in order, line count under ~200, no secrets (scan tracked files). Tighten YAML with `python -c` or a YAML linter if you edit frontmatter. Run any calibration cases under `tests/` against the skill with the skill loaded.
 
 ## Third-party skills
 
