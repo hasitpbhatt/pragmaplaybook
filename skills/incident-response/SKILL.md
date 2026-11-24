@@ -49,14 +49,6 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 - Action items must be tracked issues, not promises.
 - Regression tests and config hardening go here, not in the live incident loop.
 
-## Red Flags
-- Debugging before mitigating
-- Untracked prod changes
-- "It's probably fine" without metrics
-- Postmortem with no action items
-- Blaming a person instead of a system
-- Skipping the timeline
-
 ## Rationalizations
 
 | Excuse | Reality |
@@ -67,6 +59,15 @@ Incidents are won or lost in the first 10 minutes. **Mitigate first, investigate
 | "We know who caused it" | Systems fail; people don't. |
 | "We don't have time for a timeline" | Un-timestamped timelines block recurrence analysis and turn into blame guessing. |
 | "Just restart/retry it" | Restart masks the cause and throws away the failing state and evidence. |
+
+## Red Flags
+
+- Debugging before mitigating
+- Untracked prod changes
+- "It's probably fine" without metrics
+- Postmortem with no action items
+- Blaming a person instead of a system
+- Skipping the timeline
 
 ## Verification
 - [ ] Service restored; metrics confirm recovery

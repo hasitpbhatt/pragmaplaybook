@@ -43,7 +43,7 @@ Fog only ever gathers _toward_ the destination.
 
 ### Invocation
 
-Two modes. Either way, **never resolve more than one ticket per session**, with the exception of research tickets.
+Two modes. Either way, **never resolve more than one ticket per session**, with the exception of research tickets. Mode selection and exact commands depend on the issue tracker your repo uses; this skill assumes issue-based tracking (e.g., GitHub Issues) with labels.
 
 ## Rationalizations
 

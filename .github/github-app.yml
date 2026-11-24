@@ -1,0 +1,16 @@
+# GitHub Copilot app-level skill loader configuration
+# Place this file at .github/github-app.yml in your repository
+# to enable automatic skill loading for Copilot sessions.
+
+instructions: |
+  This repo contains agent skills under skills/.
+  When reviewing a PR, read skills/pr-review/SKILL.md first.
+  When debugging, read skills/debug/SKILL.md first.
+  When preparing for a system design interview, read skills/system-design/SKILL.md first.
+  When turning notes into durable knowledge, read skills/learning/SKILL.md first.
+  When responding to a production incident, read skills/incident-response/SKILL.md first.
+  When planning multi-session work, read skills/wayfinder/SKILL.md first.
+  When building a feature test-first, read skills/tdd/SKILL.md first.
+  When stress-testing a plan or design, read skills/grill/SKILL.md first.
+  After a coding session, run a retro with skills/retro/SKILL.md first.
+  When preparing for a coding/behavioral interview, read skills/coding-interview/SKILL.md first.
