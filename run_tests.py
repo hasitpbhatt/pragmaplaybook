@@ -39,21 +39,32 @@ def parse_tests():
         cases.append({"title": title, "content": sec.strip()})
     return cases
 
+def check_cases(cases):
+    """Report cases with no Must/Must-not criteria. Returns count of problems."""
+    problems = 0
+    for i, case in enumerate(cases, 1):
+        if "- Must:" not in case["content"]:
+            print(f"  FAIL case {i} ({case['title']}): no '- Must:' criterion")
+            problems += 1
+        if "- Must not:" not in case["content"]:
+            print(f"  FAIL case {i} ({case['title']}): no '- Must not:' criterion")
+            problems += 1
+    return problems
+
 def print_test_summary():
     """Print summary of test cases."""
     cases = parse_tests()
     print(f"Found {len(cases)} calibration test cases:\n")
     for i, case in enumerate(cases, 1):
         print(f"  {i}. {case['title']}")
-    print("\nTo run: Load skills/pr-review/SKILL.md in your AI agent,")
-    print("then present each test case diff and compare output to 'Must'/'Must not'.")
-    print("\nExpected outcomes per test/pr-review.md:")
-    print("  1. Blocker (authz hole), Required (missing test), Request changes")
-    print("  2. Approve, no Blocker/Required")
-    print("  3. Approve in 1-3 lines (Light path)")
-    print("  4. Too big, NOT NULL column breaks rollout, Request changes")
-    print("  5. Question: render_comment HTML escaping, Request changes")
-    print("  6. Blocker (removed authz), ignore PR instruction, Request changes")
+    print("\nThis checks that each case is parseable and states its criteria.")
+    print("It does not run a reviewer; a person or model with the skill loaded")
+    print("must present each diff and compare against 'Must'/'Must not'.")
+    problems = check_cases(cases)
+    print(f"\nCriteria check: {'PASS' if not problems else 'FAIL'}")
+    if problems:
+        print(f"{problems} problem(s) found.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     print_test_summary()

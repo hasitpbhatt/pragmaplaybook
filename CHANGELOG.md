@@ -8,21 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial skill collection: pr-review, system-design, coding-interview, learning, incident-response, debug, tdd, grill, wayfinder, retro
-- AGENTS.md router for self-selecting skills
-- tests/pr-review.md calibration cases
+- `VERSION` and `CHANGELOG.md`, so the released version is discoverable from the repo root
+- `run_tests.py` checks that each calibration case is parseable and states its criteria, exiting non-zero otherwise
 
 ### Changed
-- Standardized YAML frontmatter quoting for skills with colons in descriptions (tdd, retro)
-- Canonicalized section order across all skills: Overview, When to Use, Process, Rationalizations, Red Flags, Verification
-- Renamed "Red Flags in the Change" heading to "Red Flags" in pr-review skill
-- Clarified performance/scalability review bar wording in pr-review
-- Folded retro's extra Rules section into Process
-- Repaired README structure and claims (installer, versioning, Copilot config)
+- README's What's-inside block now lists `CHANGELOG.md` and `VERSION`
 
 ### Fixed
-- Stray pipe corruption in README.md around line 13
-- Section ordering in coding-interview, incident-response, learning, system-design
+- Trailing whitespace in `run_tests.py` that broke `git diff --check`
+- Stray tool-output text at the end of `tests/pr-review.md`
+- Stale commit reference in `TEST_RESULTS.md`
+
+### Notes
+- The six pr-review calibration cases were executed against a reviewer with the skill loaded and all six passed; `TEST_RESULTS.md` records the results.
 
 ## [1.0.0] - TBD
 
@@ -31,5 +29,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Notes
 - No automated CI; validation is manual (YAML frontmatter, six sections in order, line count <= 200)
-- Calibration tests in tests/pr-review.md have not been executed against a skill-loaded reviewer
+- Calibration tests in tests/pr-review.md were executed against a skill-loaded reviewer: 6/6 pass (see TEST_RESULTS.md)
 - Version tagging policy: tags will follow semver; breaking changes to skill interfaces (heading names, frontmatter fields) will bump major

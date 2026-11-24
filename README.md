@@ -8,6 +8,8 @@
 skills/         → Agent-loadable SKILL.md files (drop this repo into your agent)
 AGENTS.md       → Router that tells an agent which skill to load, and when
 tests/          → Calibration test cases (currently pr-review)
+CHANGELOG.md    → Release history (Keep a Changelog)
+VERSION         → Current released version
 ```
 
 Most skills are a single `SKILL.md` with YAML frontmatter (`name`, `description`). `skills/system-design/canvas.md` is a fillable companion template loaded alongside the system-design skill, and `tests/pr-review.md` holds its calibration cases.
