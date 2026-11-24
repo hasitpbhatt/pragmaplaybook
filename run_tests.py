@@ -29,7 +29,7 @@ def parse_tests():
     """Parse test cases from the markdown file."""
     with open(TEST_FILE, 'r', encoding='utf-8') as f:
         content = f.read()
-    
+
     # Split by "## " headings (test case markers)
     sections = re.split(r'\n## \d+\.', content)
     cases = []

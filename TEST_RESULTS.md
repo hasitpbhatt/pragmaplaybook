@@ -1,7 +1,7 @@
 # pr-review Calibration Test Results
 
 **Date:** 2026-11-24
-**Commit:** ef986f7 (latest main + nits)
+**Commit:** HEAD of the branch under review (ef986f7 at first draft; see the branch tip)
 **Skill Version:** pr-review/SKILL.md at HEAD
 
 ## Test Execution Status
