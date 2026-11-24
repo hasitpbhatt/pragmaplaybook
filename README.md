@@ -14,13 +14,23 @@ Most skills are a single `SKILL.md` with YAML frontmatter (`name`, `description`
 
 ## Quick start
 
-Install the whole collection (Claude Code, Cursor, OpenCode, Copilot CLI, …):
+### Option A: Manual (works everywhere, no installer)
+
+Drop `AGENTS.md` in your repo root, or load a single skill on demand:
+
+```
+Load skills/pr-review/SKILL.md before reviewing this PR.
+```
+
+This requires no tools and works in any agent (Claude Code, Cursor, OpenCode, Copilot CLI, VS Code, etc.).
+
+### Option B: skills CLI installer (third-party)
 
 ```bash
 npx skills add hasitpbhatt/pragmaplaybook
 ```
 
-The installer (`skills` CLI) and this repo are third-party/open-source. Review what it writes to your machine and pin the CLI version before running in shared/CI environments. Skills are read-only Markdown; the installer should only add files under your skill directory.
+The `skills` CLI is a third-party open-source tool not maintained by this repo. Review what it writes to your machine and pin the CLI version before running in shared/CI environments. Skills are read-only Markdown; the installer should only add files under your skill directory.
 
 Or load one skill on demand — this fallback works in any agent, including ones with no install command:
 
@@ -30,7 +40,7 @@ Load skills/pr-review/SKILL.md before reviewing this PR.
 
 Or let the agent self-select: drop `AGENTS.md` in your repo root and it routes each situation to the right skill.
 
-To pin a version, copy the files you want into your own repo (no version tags are published yet).
+To pin a version, check out a git tag (e.g., `git checkout v1.0.0`) or copy the files you want into your own repo.
 
 ### Creating .github/github-app.yml (optional, Copilot-specific)
 
@@ -116,7 +126,13 @@ Every skill must include Overview, When to Use, Process, Rationalizations, Red F
 
 ### Validating changes
 
-There is no automated CI yet. Check by hand: frontmatter present, all six headings present in order, line count under ~200, no secrets (scan tracked files). Tighten YAML with `python -c` or a YAML linter if you edit frontmatter. Run any calibration cases under `tests/` against the skill with the skill loaded.
+There is no automated CI yet. Check by hand: frontmatter present, all six headings present in order, line count under ~200, no secrets (scan tracked files). Tighten YAML with `python -c` or a YAML linter if you edit frontmatter.
+
+Calibration cases live in `tests/pr-review.md`. Run them manually:
+```bash
+python run_tests.py
+```
+Then load `skills/pr-review/SKILL.md` in your AI agent and present each test case diff. Record results in `TEST_RESULTS.md`.
 
 ## Third-party skills
 
