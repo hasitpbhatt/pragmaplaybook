@@ -1,0 +1,77 @@
+name: Bug Report
+description: Report a bug in a skill or the framework
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the sections below.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill?
+      description: Select the skill with the issue, or "Framework" for cross-cutting problems
+      options:
+        - pr-review
+        - system-design
+        - coding-interview
+        - learning
+        - incident-response
+        - wayfinder
+        - tdd
+        - debug
+        - grill
+        - retro
+        - Framework (AGENTS.md, README, etc.)
+        - Not sure / Multiple
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly. What did the agent do (or fail to do)?
+      placeholder: "When I loaded skills/pr-review/SKILL.md and asked it to review a PR, it..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: What should have happened instead?
+      placeholder: "It should have flagged the missing regression test as a Blocker..."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Minimal steps to reproduce. Include the exact prompt you used.
+      placeholder: |
+        1. Load skills/pr-review/SKILL.md
+        2. Present this diff: [paste diff]
+        3. Observe: [what happened]
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Agent used, version, any relevant config
+      placeholder: |
+        - Agent: GitHub Copilot / Claude Code / Cursor / OpenCode
+        - Skill version: 1.0.0 (from VERSION file)
+        - Any custom modifications: [yes/no, describe]
+    validations:
+      required: false
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      description: Did you run the skill's verification checklist?
+      options:
+        - label: I ran the skill's Verification section checks
+          required: false
+        - I checked if this is a known issue in existing issues/discussions
+          required: false
