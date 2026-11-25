@@ -1,0 +1,61 @@
+name: Bug Report
+description: Report a bug in a skill or the framework
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the sections below.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill?
+      description: Select the skill with the issue, or "Framework" for cross-cutting problems
+      options:
+        - pr-review
+        - system-design
+        - coding-interview
+        - learning
+        - incident-response
+        - wayfinder
+        - tdd
+        - debug
+        - grill
+        - retro
+        - Framework (AGENTS.md, README, etc.)
+        - Not sure / Multiple
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly. What did the agent do (or fail to do)?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+    validations:
+      required: false
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      options:
+        - label: I ran the skill's Verification section checks
+          required: false
