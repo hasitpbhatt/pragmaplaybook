@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+- `.agents/plugins/marketplace.json` (duplicate of `.claude-plugin/marketplace.json`)
+- Community health extras: issue templates, PR template, SUPPORT.md (kept CONTRIBUTING/CODE_OF_CONDUCT/SECURITY)
+
+### Added
+- `scripts/install.sh` for global skill installation
+- `CLAUDE.md` router import for cross-tool support
+
+### Changed
+- VERSION bumped to 1.0.1
+
+
 ### Added
 - `VERSION` and `CHANGELOG.md`, so the released version is discoverable from the repo root
 - `run_tests.py` checks that each calibration case is parseable and states its criteria, exiting non-zero otherwise
@@ -21,6 +33,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Notes
 - The six pr-review calibration cases were executed against a reviewer with the skill loaded and all six passed; `TEST_RESULTS.md` records the results.
+
+## [1.0.1] - 2026-11-25
+
+### Added
+- Community health files: CONTRIBUTING, CODE_OF_CONDUCT, SECURITY
+- Cross-tool portability: CLAUDE.md, marketplace manifests
+- Global install script
 
 ## [1.0.0] - TBD
 

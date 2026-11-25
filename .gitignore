@@ -11,9 +11,3 @@ skills/browseros-neo/
 skills-lock.json
 
 
-# Codex-preferred marketplace catalog (commit this file only)
-!.agents/
-.agents/*
-!.agents/plugins/
-.agents/plugins/*
-!.agents/plugins/marketplace.json
