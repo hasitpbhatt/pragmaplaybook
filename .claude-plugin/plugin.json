@@ -1,0 +1,36 @@
+{
+  "name": "pragmaplaybook-skills",
+  "version": "1.0.0",
+  "description": "Succinct, powerful agent skills for PR reviews, interviews, debugging, TDD, incident response, and more. Drop-in discipline for any AI agent.",
+  "author": {
+    "name": "Hasit Bhatt",
+    "url": "https://github.com/hasitpbhatt"
+  },
+  "repository": "https://github.com/hasitpbhatt/pragmaplaybook",
+  "license": "MIT",
+  "keywords": [
+    "pr-review",
+    "system-design",
+    "coding-interview",
+    "debugging",
+    "tdd",
+    "incident-response",
+    "learning",
+    "wayfinder",
+    "grill",
+    "retro",
+    "skills"
+  ],
+  "skills": [
+    "./skills/pr-review",
+    "./skills/system-design",
+    "./skills/coding-interview",
+    "./skills/learning",
+    "./skills/incident-response",
+    "./skills/wayfinder",
+    "./skills/tdd",
+    "./skills/debug",
+    "./skills/grill",
+    "./skills/retro"
+  ]
+}

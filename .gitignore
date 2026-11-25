@@ -10,5 +10,3 @@ skills/browseros-neo/
 .agents/
 skills-lock.json
 
-# Claude-only plugin manifests are intentionally not committed; use the Agent Skills standard layout instead.
-.claude-plugin/
